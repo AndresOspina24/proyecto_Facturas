@@ -1,17 +1,17 @@
 <?php
-class ControlProducto {
-    var $objPro;
+class ControlVendedor {
+    var $objVen;
 
-    function __construct($objPro){
-        $this->objPro = $objPro;
+    function __construct($objVen){
+        $this->objVen = $objVen;
     }
 
     function guardar(){
-        $codigo = $this->objPro->getCodigo();
-        $nombre = $this->objPro->getNombre();
-        $precio = $this->objPro->getPrecio();
+        $codigo = $this->objVen->getCodigo();
+        $nombre = $this->objVen->getNombre();
+        $telefono = $this->objVen->getTelefono();
 
-        $comandoSql = "INSERT INTO producto(codigo, nombre, precio) VALUES ('$codigo', '$nombre', '$precio')";
+        $comandoSql = "INSERT INTO vendedor(codigo, nombre, telefono) VALUES ('$codigo', '$nombre', '$telefono')";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -19,26 +19,26 @@ class ControlProducto {
     }
 
     function consultar(){
-        $codigo = $this->objPro->getCodigo();
-        $comandoSql = "SELECT * FROM producto WHERE codigo = '$codigo'";
+        $codigo = $this->objVen->getCodigo();
+        $comandoSql = "SELECT * FROM vendedor WHERE codigo = '$codigo'";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
 
         if ($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-            $this->objPro->setNombre($row['nombre']);
-            $this->objPro->setPrecio($row['precio']);
+            $this->objVen->setNombre($row['nombre']);
+            $this->objVen->setTelefono($row['telefono']);
         }
         $objControlConexion->cerrarBd();
-        return $this->objPro;
+        return $this->objVen;
     }
 
     function modificar(){
-        $codigo = $this->objPro->getCodigo();
-        $nombre = $this->objPro->getNombre();
-        $precio = $this->objPro->getPrecio();
+        $codigo = $this->objVen->getCodigo();
+        $nombre = $this->objVen->getNombre();
+        $telefono = $this->objVen->getTelefono();
 
-        $comandoSql = "UPDATE producto SET nombre='$nombre', precio='$precio' WHERE codigo = '$codigo'";
+        $comandoSql = "UPDATE vendedor SET nombre='$nombre', telefono='$telefono' WHERE codigo = '$codigo'";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -46,8 +46,8 @@ class ControlProducto {
     }
 
     function borrar(){
-        $codigo = $this->objPro->getCodigo();
-        $comandoSql = "DELETE FROM producto WHERE codigo = '$codigo'";
+        $codigo = $this->objVen->getCodigo();
+        $comandoSql = "DELETE FROM vendedor WHERE codigo = '$codigo'";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -55,21 +55,22 @@ class ControlProducto {
     }
 
     function listar(){
-        $comandoSql = "SELECT * FROM producto";
+        $comandoSql = "SELECT * FROM vendedor";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
-        $arregloProductos = array();
+        $arregloVendedores = array();
 
         while($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-            $objPro = new Producto("", "", 0);
-            $objPro->setCodigo($row['codigo']);
-            $objPro->setNombre($row['nombre']);
-            $objPro->setPrecio($row['precio']);
-            $arregloProductos[] = $objPro;
+            $objVen = new Vendedor("", "", "");
+            $objVen->setCodigo($row['codigo']);
+            $objVen->setNombre($row['nombre']);
+            $objVen->setTelefono($row['telefono']);
+            $arregloVendedores[] = $objVen;
         }
         $objControlConexion->cerrarBd();
-        return $arregloProductos;
+        return $arregloVendedores;
     }
 }
 ?>
+
