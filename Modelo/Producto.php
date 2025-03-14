@@ -41,7 +41,7 @@
             $this->valorUnitario = $valorUnitario;
         }
 
-        function getCodigo(){
+        function getValorUnitario(){
             return $this->valorUnitario;
         }
         

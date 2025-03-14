@@ -1,3 +1,4 @@
+<?php
 class Empresa {
     private string $codigo;
     private string $nombre;
@@ -12,3 +13,5 @@ class Empresa {
     public function setCodigo($codigo): void { $this->codigo = $codigo; }
     public function setNombre($nombre): void { $this->nombre = $nombre; }
 }
+
+?>
