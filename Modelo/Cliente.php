@@ -1,4 +1,5 @@
 <?php
+include_once "Persona.php";
     class Cliente extends Persona {
         private $credito;
         private $empresa; // Relación con Empresa

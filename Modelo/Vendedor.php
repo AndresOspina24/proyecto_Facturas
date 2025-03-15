@@ -1,4 +1,6 @@
 <?php
+include_once "Persona.php";
+
 class Vendedor extends Persona {
     private $carne;
     private $direccion;

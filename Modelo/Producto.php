@@ -1,9 +1,9 @@
 <?php
     class Producto{
-        string $codigo;
-        string $nombre;
-        int $stock;
-        float $valorUnitario;
+        private $codigo;
+        private $nombre;
+        private $stock;
+        private $valorUnitario;
 
         function __construct($codigo, $nombre, $stock, $valorUnitario){
             $this->codigo = $codigo;

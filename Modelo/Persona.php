@@ -23,6 +23,7 @@ class Persona {
     public function setEmail($email) { $this->email = $email; }
     public function setNombre($nombre) { $this->nombre = $nombre; }
     public function setTelefono($telefono) { $this->telefono = $telefono; }
+    public function setCodigo($codigo) {  $this->codigo = $codigo;}
 }
 
 ?>

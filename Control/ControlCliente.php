@@ -66,21 +66,27 @@ class ControlCliente {
     }
 
     function listar(){
-        $comandoSql = "SELECT * FROM cliente";
+        $comandoSql = "SELECT p.codigo, p.email, p.nombre, p.telefono, c.credito, e.codigo AS empresa_codigo, e.nombre AS empresa_nombre
+        FROM cliente c
+        JOIN persona p ON c.codigo = p.codigo
+        LEFT JOIN empresa e ON c.empresa_codigo = e.codigo";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
         $arregloClientes = array();
 
         while($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-            $objCli = new Cliente("", "", "", "", 0, new Empresa("", ""));
+            $empresa = new Empresa($row['empresa_codigo'], "");
+            $objCli = new Cliente("", "", "", "", "", new Empresa("", ""));
             $objCli->setCodigo($row['codigo']);
             $objCli->setEmail($row['email']);
             $objCli->setNombre($row['nombre']);
             $objCli->setTelefono($row['telefono']);
             $objCli->setCredito($row['credito']);
-            $objCli->setEmpresa(new Empresa($row['empresa_codigo'], ""));
+            $objCli->setEmpresa($empresa);
             $arregloClientes[] = $objCli;
+            
+
         }
         $objControlConexion->cerrarBd();
         return $arregloClientes;

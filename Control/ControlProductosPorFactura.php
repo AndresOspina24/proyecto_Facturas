@@ -75,5 +75,26 @@ class ControlProductosPorFactura {
         $objControlConexion->cerrarBd();
         return $arregloProductosPorFactura;
     }
+
+    function calcularTotal() {
+        $codigoFactura = $this->objFac->getCodigo();
+        $comandoSql = "SELECT SUM(p.subtotal * pf.cantidad) AS total 
+                       FROM productosporfactura pf 
+                       JOIN producto p ON pf.producto_codigo = p.codigo 
+                       WHERE pf.numero = '$codigoFactura'";
+    
+        $objControlConexion = new ControlConexion();
+        $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
+        $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
+    
+        $total = 0;
+        if ($row = $recordSet->fetch_array(MYSQLI_BOTH)) {
+            $total = $row['total'];
+        }
+    
+        $objControlConexion->cerrarBd();
+        return $total;
+    }
+    
 }
 ?>
