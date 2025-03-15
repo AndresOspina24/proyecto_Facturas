@@ -53,8 +53,8 @@ $listaClientes = $objControlCliente->listar();
     </div>
 </div>
 <div class="d-flex justify-content-center gap-3">
-            <button class="btn btn-primary" onclick="abrirFormulario('agregar')">Agregar</button>
-            <button class="btn btn-success" onclick="abrirFormulario('consultar')">Consultar</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="setAction('agregar')">Agregar</button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="setAction('consultar')">Consultar</button>
         </div>
     </div>
   

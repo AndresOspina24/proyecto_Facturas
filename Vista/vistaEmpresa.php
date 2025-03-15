@@ -39,7 +39,7 @@ $listaEmpresas = $objControlEmpresa->listar();
                         <td><?php echo $empresa->getNombre(); ?></td>
                         <td>
                         <button class="btn btn-warning btn-sm">Editar</button>
-                        <button class="btn btn-danger btn-sm">Borrar</button>
+                        <button class="btn btn-danger btn-sm" onclick="confirmarBorrar('<?php echo $empresa->getCodigo(); ?>')">Borrar</button>
                     </td>
                     </tr>
                 <?php } ?>
