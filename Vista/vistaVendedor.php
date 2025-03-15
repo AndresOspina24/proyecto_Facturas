@@ -32,6 +32,7 @@ $listaVendedores = $objControlVendedor->listar();
                     <th>Teléfono</th>
                     <th>Carné</th>
                     <th>Dirección</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,10 +44,20 @@ $listaVendedores = $objControlVendedor->listar();
                         <td><?php echo $vendedor->getTelefono(); ?></td>
                         <td><?php echo $vendedor->getCarne(); ?></td>
                         <td><?php echo $vendedor->getDireccion(); ?></td>
+                        <td>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Borrar</button>
+                    </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary" onclick="abrirFormulario('agregar')">Agregar</button>
+            <button class="btn btn-success" onclick="abrirFormulario('consultar')">Consultar</button>
+        </div>
     </div>
 </body>
 </html>

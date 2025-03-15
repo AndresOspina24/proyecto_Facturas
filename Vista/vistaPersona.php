@@ -31,6 +31,7 @@ $listaPersonas = $objControlPersona->listar();
                     <th>Email</th>
                     <th>Nombre</th>
                     <th>Teléfono</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,12 +40,22 @@ $listaPersonas = $objControlPersona->listar();
                         <td><?php echo $persona->getCodigo(); ?></td>
                         <td><?php echo $persona->getEmail(); ?></td>
                         <td><?php echo $persona->getNombre(); ?></td>
-                        <td><?php echo $persona->getTelefono(); ?></td>
+                        <td><?php echo $persona->getTelefono(); ?></td>                      
+                        <td>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Borrar</button>
+                    </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary" onclick="abrirFormulario('agregar')">Agregar</button>
+            <button class="btn btn-success" onclick="abrirFormulario('consultar')">Consultar</button>
+        </div>
+    </div>
+   
 </body>
 </html>
 

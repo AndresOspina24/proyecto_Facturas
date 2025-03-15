@@ -29,6 +29,7 @@ $listaEmpresas = $objControlEmpresa->listar();
                 <tr>
                     <th>Código</th>
                     <th>Nombre</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +37,20 @@ $listaEmpresas = $objControlEmpresa->listar();
                     <tr>
                         <td><?php echo $empresa->getCodigo(); ?></td>
                         <td><?php echo $empresa->getNombre(); ?></td>
+                        <td>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Borrar</button>
+                    </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary" onclick="abrirFormulario('agregar')">Agregar</button>
+            <button class="btn btn-success" onclick="abrirFormulario('consultar')">Consultar</button>
+        </div>
+    </div>
+   
 </body>
 </html>

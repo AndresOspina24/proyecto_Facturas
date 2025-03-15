@@ -31,6 +31,7 @@ $listaClientes = $objControlCliente->listar();
                     <th>Nombre</th>
                     <th>Teléfono</th>
                     <th>Empresa</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -41,13 +42,22 @@ $listaClientes = $objControlCliente->listar();
                         <td><?php echo $cliente->getNombre(); ?></td>
                         <td><?php echo $cliente->getTelefono(); ?></td>
                         <td><?php echo $cliente->getEmpresa()->getNombre(); ?></td>
+                        <td>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Borrar</button>
+                    </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
 </div>
-
+<div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary" onclick="abrirFormulario('agregar')">Agregar</button>
+            <button class="btn btn-success" onclick="abrirFormulario('consultar')">Consultar</button>
+        </div>
+    </div>
+  
 </body>
 </html>
 

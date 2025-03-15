@@ -2,36 +2,7 @@
 include '../Modelo/Producto.php';
 include '../Control/ControlProducto.php';
 include '../Control/ControlConexion.php';
-//$boton="";
-//
-//switch ($boton) {
-//    case "guardar":
-//        $objPro= new Producto("2","Mech");
-//        $objControlEmpresa= new ControlEmpresa($objEmp);
-//        $objControlEmpresa->guardar();
-//        break;
-//    case "modificar":
-//        $objEmp= new Empresa("22","Mechitas");
-//        $objControlEmpresa= new ControlEmpresa($objEmp);
-//        $objControlEmpresa->modificar();
-//        break;
-//    case "borrar":
-//        $objEmp= new Empresa("","Mech");
-//        $objControlEmpresa= new ControlEmpresa($objEmp);
-//        $objControlEmpresa->borrar();
-//        break;
-//    case "consultar":
-//        $objEmp= new Empresa("22","Mechitas");
-//        $objControlEmpresa= new ControlEmpresa($objEmp);
-//        $objControlEmpresa->consultar();
-//        echo $objEmp->getCodigo();
-//        echo "<br>";
-//        echo $objEmp->getNombre();
-//        echo "<br>";
-//        break;
-//}
 
-//tarea hacer funcionar el modificar y el borrar
 ?>
 <?php
 $objControlProducto = new ControlProducto(new Producto("", "", "", ""));
@@ -60,6 +31,7 @@ $listaProductos = $objControlProducto->listar();
                     <th>Nombre</th>
                     <th>Stock</th>
                     <th>Valor Unitario</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -69,11 +41,21 @@ $listaProductos = $objControlProducto->listar();
                         <td><?php echo $producto->getNombre(); ?></td>
                         <td><?php echo $producto->getStock(); ?></td>
                         <td><?php echo $producto->getValorUnitario(); ?></td>
+                        <td>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Borrar</button>
+                    </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary" onclick="abrirFormulario('agregar')">Agregar</button>
+            <button class="btn btn-success" onclick="abrirFormulario('consultar')">Consultar</button>
+        </div>
+    </div>
+
 </body>
 </html>
 
