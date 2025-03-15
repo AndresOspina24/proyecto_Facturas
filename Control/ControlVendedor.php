@@ -55,17 +55,22 @@ class ControlVendedor {
     }
 
     function listar(){
-        $comandoSql = "SELECT * FROM vendedor";
+        $comandoSql = "SELECT p.codigo, p.email, p.nombre, p.telefono, v.carne, v.direccion
+                   FROM vendedor v
+                   JOIN persona p ON v.codigo = p.codigo";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd("localhost", "root", "", "bd_facturas", 3306);
         $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
         $arregloVendedores = array();
 
         while($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-            $objVen = new Vendedor("", "", "");
+            $objVen = new Vendedor("", "", "", "", "", "");
             $objVen->setCodigo($row['codigo']);
+            $objVen->setEmail($row['email']);
             $objVen->setNombre($row['nombre']);
             $objVen->setTelefono($row['telefono']);
+            $objVen->setCarne($row['carne']);
+            $objVen->setDireccion($row['direccion']);
             $arregloVendedores[] = $objVen;
         }
         $objControlConexion->cerrarBd();

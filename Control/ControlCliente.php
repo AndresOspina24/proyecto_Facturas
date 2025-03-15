@@ -76,7 +76,7 @@ class ControlCliente {
         $arregloClientes = array();
 
         while($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-            $empresa = new Empresa($row['empresa_codigo'], "");
+            $empresa = new Empresa($row['empresa_codigo'], $row['empresa_nombre']);
             $objCli = new Cliente("", "", "", "", "", new Empresa("", ""));
             $objCli->setCodigo($row['codigo']);
             $objCli->setEmail($row['email']);

@@ -7,11 +7,6 @@ include '../Control/ControlConexion.php';
 <?php
 $objControlCliente = new ControlCliente(new Cliente("", "", "", "", "", new Empresa("", "")));
 $listaClientes = $objControlCliente->listar();
-
-// Verificar si hay datos antes de recorrer el foreach
-if (!isset($listaClientes) || !is_array($listaClientes)) {
-    $listaClientes = []; // Si está vacío, evita el error en foreach
-}
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +46,8 @@ if (!isset($listaClientes) || !is_array($listaClientes)) {
             </tbody>
         </table>
     </div>
+</div>
+
 </body>
 </html>
 

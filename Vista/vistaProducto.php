@@ -31,9 +31,49 @@ include '../Control/ControlConexion.php';
 //        break;
 //}
 
-
-
-
-echo "HPTA";
 //tarea hacer funcionar el modificar y el borrar
 ?>
+<?php
+$objControlProducto = new ControlProducto(new Producto("", "", "", ""));
+$listaProductos = $objControlProducto->listar();
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Gestión de Productos</h1>
+        <a href="Main.php" class="btn btn-primary">Volver al Menú</a>
+        <hr>
+        
+        <!-- Tabla para mostrar productos -->
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Valor Unitario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listaProductos as $producto) { ?>
+                    <tr>
+                        <td><?php echo $producto->getCodigo(); ?></td>
+                        <td><?php echo $producto->getNombre(); ?></td>
+                        <td><?php echo $producto->getStock(); ?></td>
+                        <td><?php echo $producto->getValorUnitario(); ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

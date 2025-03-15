@@ -62,10 +62,11 @@ class ControlProducto {
         $arregloProductos = array();
 
         while($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-            $objPro = new Producto("", "", 0);
+            $objPro = new Producto("", "", "", "");
             $objPro->setCodigo($row['codigo']);
             $objPro->setNombre($row['nombre']);
-            $objPro->setPrecio($row['precio']);
+            $objPro->setStock($row['stock']);
+            $objPro->setValorUnitario($row['valorUnitario']);
             $arregloProductos[] = $objPro;
         }
         $objControlConexion->cerrarBd();
